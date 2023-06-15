@@ -13,7 +13,6 @@ import logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-notion_client = notion_api.NotionClient
 
 # 处理语音信息
 async def handle_voice_message_to_short_summary(update: Update, context: CallbackContext):
@@ -21,6 +20,8 @@ async def handle_voice_message_to_short_summary(update: Update, context: Callbac
     try:
         chat_id = update.effective_chat.id
         bot = context.bot
+
+        notion_client = notion_api.NotionClient()
 
         # if message.reply_to_message:
         #     reply_message = message.reply_to_message
@@ -129,6 +130,8 @@ async def handle_voice_message_to_short_summary(update: Update, context: Callbac
 async def voice_summary_handle(update: Update, context: CallbackContext):
 
     logging.info("voice_summary_handle runs")
+
+    # notion_client = notion_api.NotionClient()
 
     message = update.message
     # voice = None
